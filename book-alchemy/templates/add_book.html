@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Book</title>
+</head>
+<body>
+    <h1>Add New Book</h1>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+    <form action="{{ url_for('add_book') }}" method="POST">
+        <label for="title">Book Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+        <label for="isbn">ISBN:</label><br>
+        <input type="text" id="isbn" name="isbn"><br><br>
+        <label for="publication_year">Publication Year:</label><br>
+        <input type="number" id="publication_year" name="publication_year"><br><br>
+        <label for="author_id">Author:</label><br>
+        <select id="author_id" name="author_id" required>
+            {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Add Book">
+    </form>
+    <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+</body>
+</html>
